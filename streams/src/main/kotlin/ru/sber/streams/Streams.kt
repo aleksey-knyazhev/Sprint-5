@@ -3,6 +3,7 @@ package ru.sber.streams
 
 // 1. Используя withIndex() посчитать сумму элементов листа, индекс которых кратен 3. (нулевой индекс тоже входит)
 fun getSumWithIndexDivisibleByThree(list: List<Long>): Long {
+    list.filterIndexed { index, _ -> index % 3 == 0 }.withIndex().forEach { println(it) }
     return 0
 }
 
