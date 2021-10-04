@@ -5,11 +5,11 @@ package ru.sber.streams
 fun getSumWithIndexDivisibleByThree(list: List<Long>): Long {
 //    return list.filterIndexed { index, _ -> index % 3 == 0 }.sum() - работает, но без withIndex()
     return list.withIndex().filter { it.index % 3 == 0 }.sumOf { it.value }
-
 }
 
 // 2. Используя функцию generateSequence() создать последовательность, возвращающую числа Фибоначчи.
 fun generateFibonacciSequence(): Sequence<Int> {
+    val result = generateSequence {  }
     return emptySequence()
 }
 
