@@ -37,7 +37,9 @@ fun Shop.getNumberOfDeliveredProductByCity(): Map<City, Int> =
     this.customers.groupBy { it.city }.mapValues { it.value.flatMap { it.orders }.filter { it.isDelivered }.flatMap { it.products }.count() }
 
 // 8. Получить соответствие в мапе: город - самый популярный продукт в городе.
-fun Shop.getMostPopularProductInCity(): Map<City, Product> = emptyMap()
+fun Shop.getMostPopularProductInCity(): Map<City, Product> =
+    // Здесь использовано !! - в расчете на то, что вводные данные это позволят
+    this.customers.groupBy { it.city }.mapValues { it.value.flatMap { it.orders }.flatMap { it.products }.groupingBy { it }.eachCount().maxByOrNull { it.value }!!.key}
 
 // 9. Получить набор товаров, которые заказывали все покупатели.
 fun Shop.getProductsOrderedByAll(): Set<Product> = emptySet()

@@ -57,8 +57,8 @@ fun main() {
 //    customer1.orders.map { it -> it.products }.flatten().sortedBy { it.price }.last()
     shop.customers.map { it -> Pair(it.city, it.orders.filter { it -> it.isDelivered }.map { it -> it.products.count() }) }
     shop.customers.flatMap { it.orders }.filter { it.isDelivered }.flatMap { it.products }
-    shop.customers.groupBy { it.city }.mapValues { it.value.flatMap { it.orders }.filter { it.isDelivered }.flatMap { it.products }.count() }
-
+//    shop.customers.groupBy { it.city }.mapValues { it.value.flatMap { it.orders }.filter { it.isDelivered }.flatMap { it.products }.count() ()ю}
+    shop.customers.flatMap { it.orders }.filter { it.isDelivered }.flatMap { it.products }.count()
 
     val a = 0
 
