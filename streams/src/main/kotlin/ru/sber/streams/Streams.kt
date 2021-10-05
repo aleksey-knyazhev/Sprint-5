@@ -13,7 +13,10 @@ fun generateFibonacciSequence(): Sequence<Int> {
 }
 
 // 3. Получить города, в которых есть покупатели.
-fun Shop.getCustomersCities(): Set<City> = emptySet()
+fun Shop.getCustomersCities(): Set<City> {
+    return emptySet()
+    //return this.customers
+}
 
 // 4. Получить все когда-либо заказанные продукты.
 fun Shop.allOrderedProducts(): Set<Product> = emptySet()
