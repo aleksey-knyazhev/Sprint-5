@@ -1,5 +1,7 @@
 package ru.sber.streams
 
+import io.mockk.InternalPlatformDsl.toArray
+
 fun main() {
     //products
     val milk = Product("Milk", 88.0)
@@ -49,7 +51,10 @@ fun main() {
 
 
 
-    shop.customers.forEach { it -> it.city }.toString()
+//    shop.customers.map { customer -> customer.city }.distinct().
+    //shop.customers.map { customer -> Pair(customer, customer.orders.count()) }.sortedBy {it.second}.last().first.name
+    val customer1 = Customer("Ivan", Moscow, listOf(Order(listOf(milk, bread)), Order(listOf(beef))))
+    customer1.orders.map { it -> it.products }.flatten().sortedBy { it.price }.last()
 
     val a = 0
 

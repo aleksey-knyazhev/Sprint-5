@@ -14,18 +14,23 @@ fun generateFibonacciSequence(): Sequence<Int> {
 
 // 3. Получить города, в которых есть покупатели.
 fun Shop.getCustomersCities(): Set<City> {
-    return emptySet()
-    //return this.customers
+    return this.customers.map { customer -> customer.city }.distinct().toSet()
 }
 
 // 4. Получить все когда-либо заказанные продукты.
-fun Shop.allOrderedProducts(): Set<Product> = emptySet()
+fun Shop.allOrderedProducts(): Set<Product> =
+    this.customers.map { customer -> customer.orders }.flatten().map { order -> order.products }.flatten().toSet()
 
 // 5. Получить покупателя, который сделал больше всего заказов.
-fun Shop.getCustomerWithMaximumNumberOfOrders(): Customer? = null
+fun Shop.getCustomerWithMaximumNumberOfOrders(): Customer? = this.customers.map { customer ->
+    Pair(
+        customer,
+        customer.orders.count()
+    )
+}.maxByOrNull { it.second }!!.first
 
 // 6. Получить самый дорогой продукт, когда-либо приобртенный покупателем.
-fun Customer.getMostExpensiveProduct(): Product? = null
+fun Customer.getMostExpensiveProduct(): Product? = this.orders.map { it -> it.products }.flatten().maxByOrNull { it.price }!!
 
 // 7. Получить соответствие в мапе: город - количество заказанных и доставленных продуктов в данный город.
 fun Shop.getNumberOfDeliveredProductByCity(): Map<City, Int> = emptyMap()
