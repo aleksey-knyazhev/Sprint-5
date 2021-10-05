@@ -33,7 +33,8 @@ fun Shop.getCustomerWithMaximumNumberOfOrders(): Customer? = this.customers.map 
 fun Customer.getMostExpensiveProduct(): Product? = this.orders.map { it -> it.products }.flatten().maxByOrNull { it.price }!!
 
 // 7. Получить соответствие в мапе: город - количество заказанных и доставленных продуктов в данный город.
-fun Shop.getNumberOfDeliveredProductByCity(): Map<City, Int> = emptyMap()
+fun Shop.getNumberOfDeliveredProductByCity(): Map<City, Int> =
+    this.customers.groupBy { it.city }.mapValues { it.value.flatMap { it.orders }.filter { it.isDelivered }.flatMap { it.products }.count() }
 
 // 8. Получить соответствие в мапе: город - самый популярный продукт в городе.
 fun Shop.getMostPopularProductInCity(): Map<City, Product> = emptyMap()
