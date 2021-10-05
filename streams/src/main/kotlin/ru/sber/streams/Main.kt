@@ -60,6 +60,7 @@ fun main() {
 //    shop.customers.groupBy { it.city }.mapValues { it.value.flatMap { it.orders }.filter { it.isDelivered }.flatMap { it.products }.count() ()ю}
     shop.customers.flatMap { it.orders }.filter { it.isDelivered }.flatMap { it.products }.count()
 
+
     val a = 0
 
 }
