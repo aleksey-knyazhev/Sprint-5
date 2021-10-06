@@ -59,6 +59,8 @@ fun main() {
     shop.customers.flatMap { it.orders }.filter { it.isDelivered }.flatMap { it.products }
 //    shop.customers.groupBy { it.city }.mapValues { it.value.flatMap { it.orders }.filter { it.isDelivered }.flatMap { it.products }.count() ()ю}
     shop.customers.flatMap { it.orders }.filter { it.isDelivered }.flatMap { it.products }.count()
+    shop.customers.flatMap { it.orders }.flatMap { it.products }.toSet()
+    shop.customers.groupBy { it.city }.mapValues { it.value.flatMap { it.orders }.filter { it.isDelivered }.flatMap { it.products }.count() }
 
 
     val a = 0

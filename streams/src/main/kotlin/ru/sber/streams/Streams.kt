@@ -42,5 +42,6 @@ fun Shop.getMostPopularProductInCity(): Map<City, Product> =
     this.customers.groupBy { it.city }.mapValues { it.value.flatMap { it.orders }.flatMap { it.products }.groupingBy { it }.eachCount().maxByOrNull { it.value }!!.key}
 
 // 9. Получить набор товаров, которые заказывали все покупатели.
-fun Shop.getProductsOrderedByAll(): Set<Product> = emptySet()
+fun Shop.getProductsOrderedByAll(): Set<Product> =
+    this.customers.map { it.orders.flatMap { it.products }.toSet()}.reduceRight{ acc, set -> acc.intersect(set) }
 
