@@ -43,9 +43,6 @@ class JsonCustomClassDeserializer {
         val objectMapper = ObjectMapper()
             .registerModules(KotlinModule(), JavaTimeModule(), module)
 
-
-
-
         // when
         val client = objectMapper.readValue<Client7>(data)
 
